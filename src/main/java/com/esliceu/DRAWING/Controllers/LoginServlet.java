@@ -28,14 +28,19 @@ public class LoginServlet extends HttpServlet {
         if (userService.authenticateUser(username, password)) {
             // Autenticación exitosa, redirige al usuario a "welcome.jsp"
             response.sendRedirect("/pagina");
+            return;
         } else {
             // Autenticación fallida, puedes mostrar un mensaje de error
             // Autenticación fallida, establece un mensaje de error
             request.setAttribute("errorMessage", "Nombre de usuario o contraseña incorrectos");
 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+            dispatcher.forward(request,response);
+            return;
             // Redirige de nuevo a la página de inicio de sesión con el mensaje de error
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+
 
     }
 

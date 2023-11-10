@@ -17,8 +17,8 @@
 
 
     <form action="/pagina" method="post">
-       <label for="figura">Figure:</label>
-       <select id="figura" name="figura">
+       <label for="shape">Shape:</label>
+       <select id="shapeSelect" name="shapeSelect">
            <option value="square">Square</option>
            <option value="triangle">Triangle</option>
            <option value="star">Star</option>
@@ -28,13 +28,13 @@
       <input type="checkbox" id="brush">
 
         <label for="Size">Size:</label>
-        <input type="range" id="size" min="1" max="10" value="1">
+        <input type="range" id="size" min="10" max="50" value="10">
 
        <label for="Color">Color del pincel/figura:</label>
                <input type="color" id="color" value="#000000">
 
                <label for="Fill">Rellenar figura:</label>
-                       <input type="checkbox" id="fill">
+                       <input type="checkbox" id="fillShape">
 
         <input type="submit" value="Ready">
     </form>

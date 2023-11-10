@@ -23,6 +23,7 @@ public class UserService {
     }
 
     public boolean authenticateUser(String username, String password) {
+
         return userDAO.authenticateUser(username,password);
     }
 }
