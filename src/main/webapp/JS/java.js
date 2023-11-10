@@ -59,58 +59,45 @@ document.addEventListener("DOMContentLoaded", function () {
         canvas.addEventListener("click", (event) => {
             if (!isDrawing) {
                 const selectedShape = shapeSelect.value;
-                ctx.strokeStyle = colorInput.value;
-                ctx.lineWidth = shapeSizeInput.value;
-
-
                 const x = event.offsetX;
                 const y = event.offsetY;
+
+                ctx.strokeStyle = colorInput.value;
+                ctx.lineWidth = 2;
 
                 if (selectedShape === "circle") {
                     const radius = shapeSizeInput.value;
                     ctx.beginPath();
                     ctx.arc(x, y, radius, 0, 2 * Math.PI);
                     if (fillShapeCheckbox.checked) {
+                        ctx.fillStyle = colorInput.value;
                         ctx.fill();
-                    } else {
-                        ctx.stroke();
                     }
+                    ctx.stroke();
                 } else if (selectedShape === "square") {
                     const size = shapeSizeInput.value;
-                    ctx.strokeRect((x-size/2), (y-size/2), size, size);
-                    ctx.strokeStyle = colorInput.value;
-                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.rect(x - size / 2, y - size / 2, size, size);
                     if (fillShapeCheckbox.checked) {
-                    ctx.lineWidth = shapeSizeInput.value;
-                    ctx.fillStyle = colorInput.value;
-                        ctx.fillRect((x-size/2), (y-size/2), size, size);
-                    } else {
-
-                    ctx.fillStyle = "transparent";
-
-
-
+                        ctx.fillStyle = colorInput.value;
+                        ctx.fill();
                     }
-                }
-                else if(selectedShape === "triangle"){
-                  const size = shapeSizeInput.value;
-                              const height = (Math.sqrt(3) / 2) * size;
+                    ctx.stroke();
+                } else if (selectedShape === "triangle") {
+                    const size = shapeSizeInput.value;
+                    const height = (Math.sqrt(3) / 2) * size;
 
-                              ctx.beginPath();
-                              ctx.moveTo(x - size / 2, y + height / 2);
-                              ctx.lineTo(x + size / 2, y + height / 2);
-                              ctx.lineTo(x, y - height / 2);
-                              ctx.closePath();
-                              ctx.stroke();
-                              ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(x - size / 2, y + height / 2);
+                    ctx.lineTo(x + size / 2, y + height / 2);
+                    ctx.lineTo(x, y - height / 2);
+                    ctx.closePath();
 
-
-                              if (fillShapeCheckbox.checked) {
-                                  ctx.fillStyle = colorInput.value;
-                                  ctx.fill();
-                              } else {
-                                  ctx.stroke();
-                              }
+                    if (fillShapeCheckbox.checked) {
+                        ctx.fillStyle = colorInput.value;
+                        ctx.fill();
+                    }
+                    ctx.stroke();
                 }
             }
         });
