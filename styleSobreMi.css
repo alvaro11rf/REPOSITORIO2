@@ -1,0 +1,32 @@
+#SobreMiImage {
+    max-width: 30%;
+    max-height: 700px;
+    min-height: 400px;
+    min-width: 400px;
+    height: auto;
+    margin-top: 10px;
+
+}
+.Descripción{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+#JUANDE{
+    width: 195px;
+    height: 85px;
+}
+#ESLICEU{
+    width: 200px;
+    height: 100px;
+}
+#SANJOSE{
+    width: 150px;
+    height: 150px;
+}
+#EOI{
+    width: 200px;
+    height: 90px;
+}
+
