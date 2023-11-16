@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @WebServlet("/login")
 
@@ -26,11 +27,15 @@ public class LoginServlet extends HttpServlet {
 
         // Realiza la autenticación (verifica el nombre de usuario y la contraseña)
         if (userService.authenticateUser(username, password)) {
-            // Autenticación exitosa, redirige al usuario a "welcome.jsp"
+            // Autenticación exitosa, redirige al usuario a "pagina.jsp"
+           HttpSession session = request.getSession();
+            session.setAttribute("username",username);
+
+
+
             response.sendRedirect("/pagina");
             return;
         } else {
-            // Autenticación fallida, puedes mostrar un mensaje de error
             // Autenticación fallida, establece un mensaje de error
             request.setAttribute("errorMessage", "Nombre de usuario o contraseña incorrectos");
 

@@ -1,4 +1,8 @@
 package com.esliceu.DRAWING.Controllers;
+import com.esliceu.DRAWING.DAOS.UserDAO;
+import com.esliceu.DRAWING.Model.Draw;
+import com.esliceu.DRAWING.Model.User;
+import com.esliceu.DRAWING.Services.DrawService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/pagina")
+import java.util.List;
 
+@WebServlet("/draw")
 
-public class PaginaServlet  extends HttpServlet {
-
+public class DrawServlet extends HttpServlet{
+    DrawService drawService = new DrawService();
+    User user = new User();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -21,17 +27,20 @@ public class PaginaServlet  extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pagina.jsp");
+
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/draw.jsp");
         dispatcher.forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String draw = request.getParameter("draw");
-        System.out.println(draw);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allDrawings.jsp");
+        String drawing = request.getParameter("shapesJSON");
+        drawService.saveDrawing(drawing, user);
 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/draw.jsp");
         dispatcher.forward(request,response);
 
     }
+
 }
