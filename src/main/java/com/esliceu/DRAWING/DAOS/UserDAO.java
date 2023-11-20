@@ -5,7 +5,7 @@ import com.esliceu.DRAWING.Model.User;
 import java.util.List;
 
 public interface UserDAO {
-    User getUserByUserName(String userName);
+    User getUserByUserName(String username);
     void addUser(User user);
     List<User> getAllUsers();
 

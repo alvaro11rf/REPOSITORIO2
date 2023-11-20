@@ -1,12 +1,12 @@
 package com.esliceu.DRAWING.Model;
 
 public class User {
-        private String userName;
+        private String username;
         private String password;
         private String email;
 
-        public User(String userName, String password, String email) {
-            this.userName = userName;
+        public User(String username, String password, String email) {
+            this.username = username;
             this.password = password;
             this.email = email;
         }
@@ -15,12 +15,12 @@ public class User {
 
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = username;
     }
 
     public String getPassword() {

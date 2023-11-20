@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawDAOImpl implements DrawDAO {
+    private static int nextId = 1;
     static List<Draw> drawList = new ArrayList<>();
 
     @Override
-    public void saveDrawing(Draw draw) {
-
+    public void saveDrawing(Draw draw, String username) {
+        draw.setId(nextId++);
         drawList.add(draw);
     }
 
@@ -32,6 +33,17 @@ public class DrawDAOImpl implements DrawDAO {
     @Override
     public List<Draw> all() {
         return drawList;
+    }
+
+    @Override
+    public Draw getDrawingDetailsById(int drawingId) {
+        for (Draw draw: drawList){
+            if (draw.getId() == drawingId){
+
+                return draw;
+            }
+        }
+        return null;
     }
 
 

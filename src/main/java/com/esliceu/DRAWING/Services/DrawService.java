@@ -14,7 +14,7 @@ public class DrawService {
         Draw mydraw = new Draw();
         mydraw.setShapesJSON(shapesJSON);
         mydraw.setUser(user);
-        drawDAO.saveDrawing(mydraw);
+        drawDAO.saveDrawing(mydraw, user.getUsername());
     }
 
     public List<Draw> myDrawings(String username) {
@@ -23,5 +23,9 @@ public class DrawService {
 
     public List<Draw> all() {
         return drawDAO.all();
+    }
+
+    public Draw getDrawingDetailsById(int drawingId) {
+       return drawDAO.getDrawingDetailsById(drawingId);
     }
 }

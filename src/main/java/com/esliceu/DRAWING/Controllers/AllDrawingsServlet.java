@@ -27,14 +27,26 @@ public class AllDrawingsServlet extends HttpServlet{
             return;
         }
         List<Draw> list = drawService.all();
+        System.out.println(list.size());
         request.setAttribute("list",list);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allDrawings.jsp");
-        dispatcher.forward(request,response);
-    }
+
+            // Si no hay viewDrawingId, muestra la lista de dibujos
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allDrawings.jsp");
+            dispatcher.forward(request,response);
+        }
+
+
+
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String drawing = request.getParameter("shapesJSON");
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+
         drawService.saveDrawing(drawing, user);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allDrawings.jsp");

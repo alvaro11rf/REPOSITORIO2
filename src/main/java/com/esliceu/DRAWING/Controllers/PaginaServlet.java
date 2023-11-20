@@ -1,5 +1,8 @@
 package com.esliceu.DRAWING.Controllers;
 
+import com.esliceu.DRAWING.Model.User;
+import com.esliceu.DRAWING.Services.DrawService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +16,8 @@ import java.io.IOException;
 
 public class PaginaServlet  extends HttpServlet {
 
+    DrawService drawService = new DrawService();
+    User user = new User();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -29,6 +34,8 @@ public class PaginaServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        String draw = request.getParameter("draw");
         System.out.println(draw);
+        String drawing = request.getParameter("shapesJSON");
+        drawService.saveDrawing(drawing, user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/allDrawings.jsp");
 
         dispatcher.forward(request,response);

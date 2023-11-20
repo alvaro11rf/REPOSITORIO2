@@ -11,7 +11,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User getUserByUserName(String username) {
         for (User user : users) {
-            if (user.getUserName().equals(username)) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }
@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) {
-        if (getUserByUserName(user.getUserName()) == null) {
+        if (getUserByUserName(user.getUsername()) == null) {
             if (user.getPassword().length() >= 5) {
                 users.add(user);
             }
@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean isRegistred(String username) {
         for (User user : users) {
-            if (user.getUserName().equals(username)) {
+            if (user.getUsername().equals(username)) {
                 return true;
             }
         }
@@ -48,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean authenticateUser(String username, String password) {
         for (User user : users) {
-            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return true;
             }
 
